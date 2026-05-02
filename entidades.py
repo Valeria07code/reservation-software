@@ -1,8 +1,13 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
+import logging
+import re
 
 from excepciones import ValidacionClienteError
+
+LOGGER = logging.getLogger(__name__)
+
 
 class EntidadSistema(ABC):
     """Base abstracta de entidades del sistema."""
@@ -19,6 +24,7 @@ class EntidadSistema(ABC):
     @abstractmethod
     def resumen(self) -> str:
         """Devuelve una representacion corta de la entidad."""
+
 
 class Cliente(EntidadSistema):
     """Representa un cliente con validaciones robustas."""
