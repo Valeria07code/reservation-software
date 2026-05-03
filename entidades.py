@@ -126,6 +126,11 @@ class Servicio(EntidadSistema, ABC):
         return self._tarifa_base
 
     @property
+    def precio_base(self) -> float:
+        """Mismo valor que tarifa_base; nombre alternativo usado en servicios especializados."""
+        return self._tarifa_base
+
+    @property
     def disponible(self) -> bool:
         """Indica si el servicio acepta nuevas reservas en este momento."""
         return self._disponible
@@ -256,7 +261,11 @@ class Reserva(EntidadSistema):
             raise ReservaError(f"No fue posible procesar la reserva {self.id}") from error
         else:
             self._estado = "procesada"
-            LOGGER.info("Reserva %s procesada con total %.2f", self.id, total)
+            LOGGER.info(
+                "Reserva %s procesada con total %.0f pesos",
+                self.id,
+                total,
+            )
             return total
         finally:
             LOGGER.debug("Cierre de procesamiento para reserva %s", self.id)
