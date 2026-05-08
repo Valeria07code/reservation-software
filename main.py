@@ -4,7 +4,7 @@ from pathlib import Path
 import logging
 
 from simulador import ejecutar_simulaciones
-
+from menu import mostrar_menu
 
 def _configurar_logger_fallback() -> None:
     """Configura logging local si aun no existe logger_config del equipo."""
@@ -42,7 +42,7 @@ def iniciar_aplicacion() -> None:
     print("")
 
     try:
-        ejecutar_simulaciones()
+        mostrar_menu()
     except Exception:
         logger.exception("Ocurrio un error no controlado en la ejecucion principal")
         print("")
